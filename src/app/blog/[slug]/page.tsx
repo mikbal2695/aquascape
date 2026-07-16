@@ -1,0 +1,85 @@
+import { getPostBySlug, getAllPosts } from "@/lib/mdx";
+import { notFound } from "next/navigation";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import AnalyticsTracker from "@/components/AnalyticsTracker";
+
+export const revalidate = 0; // Force SSR for fresh content and views logging
+
+interface PageProps {
+  params: Promise<{
+    slug: string;
+  }>;
+}
+
+export async function generateStaticParams() {
+  const posts = await getAllPosts();
+  return posts.map((post) => ({
+    slug: post.metadata.slug,
+  }));
+}
+
+export default async function BlogPostPage({ params }: PageProps) {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
+
+  if (!post) {
+    notFound();
+  }
+
+  return (
+    <div className="main-layout">
+      {/* Analytics Page Tracker */}
+      <AnalyticsTracker slug={post.metadata.slug} />
+
+      <div className="content-area">
+        <article className="box">
+          <div className="box-content" style={{ padding: '30px' }}>
+            <header className="article-header">
+              <h1 style={{ color: 'var(--brand-blue)' }}>
+                {post.metadata.title}
+              </h1>
+              <div className="article-meta" style={{ color: 'var(--text-muted)' }}>
+                <span>📅 {new Date(post.metadata.date).toLocaleDateString()}</span> &nbsp;|&nbsp; 
+                <span>👤 {post.metadata.author || 'Unknown'}</span> &nbsp;|&nbsp;
+                <span>🏷️ {post.metadata.tags.join(', ')}</span>
+              </div>
+            </header>
+
+            <div className="ad-container">
+              Top Article Ad Placeholder
+            </div>
+
+            <div className="prose">
+              <MDXRemote source={post.content} />
+            </div>
+
+            <div className="ad-container">
+              Bottom Article Ad Placeholder
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <aside className="sidebar">
+        <div className="box">
+          <div className="box-header">
+            👤 Author Profile
+          </div>
+          <div className="box-content" style={{ textAlign: 'center' }}>
+             <div className="blog-author-avatar" style={{ width: '80px', height: '80px', margin: '0 auto 15px auto', overflow: 'hidden' }}>
+               <img 
+                 src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${post.metadata.author || post.metadata.slug}`} 
+                 alt="avatar" 
+                 style={{ width: '100%', height: '100%' }}
+               />
+             </div>
+             <h4>{post.metadata.author || 'AquascaperJohn'}</h4>
+             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '10px' }}>
+               Passionate about setups and sharing aquascaping knowledge.
+             </p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  );
+}
