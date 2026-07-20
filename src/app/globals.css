@@ -502,7 +502,11 @@ a:hover {
 }
 
 /* Sticky sidebar */
-.sticky-sidebar-ad {
+.sidebar {
   position: sticky;
   top: 20px;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }

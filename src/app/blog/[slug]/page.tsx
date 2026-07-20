@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const ogImageUrl = post.metadata.image?.startsWith('http') 
     ? post.metadata.image 
-    : `https://becharascape.com${post.metadata.image || '/jungle-aquarium.png'}`;
+    : `https://www.becharascape.com${post.metadata.image || '/jungle-aquarium.png'}`;
 
   return {
     title: post.metadata.title,
@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: post.metadata.title,
       description: cleanDescription,
-      url: `https://becharascape.com/blog/${slug}`,
+      url: `https://www.becharascape.com/blog/${slug}`,
       siteName: "BecharaScape",
       images: [
         {

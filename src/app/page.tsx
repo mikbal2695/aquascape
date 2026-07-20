@@ -142,6 +142,61 @@ export default async function Home({ searchParams }: PageProps) {
               </div>
             </div>
           </div>
+
+          <div className="box">
+            <div className="box-header">
+              🏷️ Filter by Tag
+            </div>
+            <div className="box-content" style={{ padding: '15px', display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+              {['Low Tech', 'High Tech', 'Iwagumi', 'Dutch', 'hardscape', 'biotope', 'setup-guide', 'paludarium', 'moss'].map((tagName) => {
+                const isActive = tag?.toLowerCase() === tagName.toLowerCase();
+                return (
+                  <Link 
+                    key={tagName} 
+                    href={`/?tag=${tagName}`}
+                    style={{
+                      padding: '6px 12px',
+                      backgroundColor: isActive ? 'var(--brand-blue)' : '#f3f4f6',
+                      color: isActive ? '#fff' : '#4b5563',
+                      borderRadius: '20px',
+                      fontSize: '0.8rem',
+                      fontWeight: '500',
+                      textDecoration: 'none',
+                      border: '1px solid var(--border-color)',
+                      transition: 'all 0.2s',
+                    }}
+                  >
+                    #{tagName}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="box" style={{ background: 'linear-gradient(135deg, var(--header-dark), #1a365d)', color: '#fff', border: 'none' }}>
+            <div className="box-content" style={{ padding: '20px' }}>
+              <h4 style={{ margin: '0 0 10px 0', color: '#48BB78', fontSize: '1rem', fontWeight: 'bold' }}>📰 Aquascaper Journal</h4>
+              <p style={{ fontSize: '0.8rem', color: '#cbd5e1', lineHeight: '1.4', marginBottom: '15px' }}>
+                Join our newsletter and receive weekly aquascaping guides, tank showcases, and equipment reviews.
+              </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <input 
+                  type="email" 
+                  placeholder="Enter your email" 
+                  style={{
+                    padding: '8px 12px',
+                    borderRadius: '4px',
+                    border: '1px solid #4a5568',
+                    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                    color: '#fff',
+                    outline: 'none',
+                    fontSize: '0.85rem'
+                  }}
+                />
+                <button className="btn btn-orange" style={{ width: '100%', padding: '8px', fontSize: '0.85rem', border: 'none', cursor: 'pointer', color: '#fff', fontWeight: 'bold' }}>Subscribe</button>
+              </div>
+            </div>
+          </div>
         </aside>
       </div>
     </div>

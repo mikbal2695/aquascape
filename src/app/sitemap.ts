@@ -4,7 +4,7 @@ import { getAllPosts } from '@/lib/mdx';
 export const revalidate = 0; // Force fresh sitemap generation on every request
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://becharascape.com';
+  const baseUrl = 'https://www.becharascape.com';
 
   const posts = await getAllPosts();
   

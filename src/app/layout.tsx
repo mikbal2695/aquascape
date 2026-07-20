@@ -4,7 +4,7 @@ import "./globals.css";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://becharascape.com'),
+  metadataBase: new URL('https://www.becharascape.com'),
   alternates: {
     canonical: '/',
   },
