@@ -4,11 +4,15 @@ import "./globals.css";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://becharascape.com'),
+  alternates: {
+    canonical: '/',
+  },
   title: {
     template: "%s | BecharaScape",
     default: "BecharaScape - My Adventures In Aquascaping",
   },
-  description: "Explore professional aquascaping tutorials, planted tank setups, aquarium calculators, and journals. Learn how to build paludariums, cichlid reefs, and nature aquariums.",
+  description: "Discover professional aquascaping guides, planted tank setups, aquarium calculators, and journals. Learn to build paludariums and nature aquariums.",
   keywords: ["aquascaping", "planted tank", "aquarium", "becharascape", "fish tank", "paludarium"],
   openGraph: {
     title: "BecharaScape - My Adventures In Aquascaping",
@@ -39,7 +43,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   // Replace with your real AdSense publisher ID when ready
-  const ADSENSE_PID = "ca-pub-5864806490732503"; 
+  const ADSENSE_PID = "ca-pub-8806489587869464"; 
 
   const jsonLd = {
     "@context": "https://schema.org",

@@ -42,12 +42,6 @@ export default async function Home({ searchParams }: PageProps) {
         ></div>
       </section>
 
-      {/* Top Banner Leaderboard Ad (AdSense Able Layout) */}
-      <div className="ad-container" style={{ margin: '0 0 20px 0', padding: '1.5rem', background: '#fff', border: '1px solid var(--border-color)' }}>
-        <div style={{ fontSize: '0.7rem', color: '#bbb', textTransform: 'uppercase', marginBottom: '5px' }}>Advertisement</div>
-        <div style={{ fontStyle: 'italic', color: '#999', fontSize: '1.1rem' }}>Responsive Leaderboard Ad Slot</div>
-      </div>
-
       <div className="main-layout">
         {/* Main Content (Latest Setups) */}
         <div className="content-area">
@@ -89,14 +83,6 @@ export default async function Home({ searchParams }: PageProps) {
                         />
                       </Link>
                     </div>
-
-                    {/* Native In-Feed AdSense Injection after the first post */}
-                    {index === 0 && (
-                      <div className="ad-container" style={{ margin: '20px 0', padding: '1.5rem', background: '#fff', border: '1px solid var(--border-color)', borderRadius: '4px' }}>
-                        <div style={{ fontSize: '0.7rem', color: '#bbb', textTransform: 'uppercase', marginBottom: '5px' }}>Advertisement</div>
-                        <div style={{ fontStyle: 'italic', color: '#999', fontSize: '1rem' }}>In-Feed Native Ad Slot</div>
-                      </div>
-                    )}
                   </div>
                 ))
               )}
@@ -116,19 +102,19 @@ export default async function Home({ searchParams }: PageProps) {
             <div className="box-content" style={{ padding: '0 15px' }}>
               <div className="sidebar-list-item">
                 <div className="sidebar-details">
-                  <div className="sidebar-title"><Link href="/forum/thread-1">Best CO2 diffuser for a 20g long?</Link></div>
+                  <div className="sidebar-title"><Link href="#">Best CO2 diffuser for a 20g long?</Link></div>
                   <div className="sidebar-meta">The Gear Forum<br/>by plantmaster</div>
                 </div>
               </div>
               <div className="sidebar-list-item">
                 <div className="sidebar-details">
-                  <div className="sidebar-title"><Link href="/forum/thread-2">Algae bloom won't go away</Link></div>
+                  <div className="sidebar-title"><Link href="#">Algae bloom won't go away</Link></div>
                   <div className="sidebar-meta">Algae Control<br/>by newbiefish</div>
                 </div>
               </div>
               <div className="sidebar-list-item">
                 <div className="sidebar-details">
-                  <div className="sidebar-title"><Link href="/forum/thread-3">Trimming Stem Plants</Link></div>
+                  <div className="sidebar-title"><Link href="#">Trimming Stem Plants</Link></div>
                   <div className="sidebar-meta">Plant Care<br/>by scissor_hands</div>
                 </div>
               </div>
@@ -154,14 +140,6 @@ export default async function Home({ searchParams }: PageProps) {
                   <div className="sidebar-meta">by LakeTanganyikaExplorer<br/>Malawi Setups</div>
                 </div>
               </div>
-            </div>
-          </div>
-
-          {/* Sticky Sidebar Ad Container (High Click-through rate placement) */}
-          <div className="sticky-sidebar-ad">
-            <div className="ad-container" style={{ background: '#fff', border: '1px solid var(--border-color)', padding: '2rem 1rem' }}>
-              <div style={{ fontSize: '0.7rem', color: '#bbb', textTransform: 'uppercase', marginBottom: '5px' }}>Advertisement</div>
-              <div style={{ fontStyle: 'italic', color: '#999', fontSize: '1rem' }}>Sticky Skyscraper Ad Slot</div>
             </div>
           </div>
         </aside>

@@ -2,13 +2,62 @@ import { getPostBySlug, getAllPosts } from "@/lib/mdx";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
-
-export const revalidate = 0; // Force SSR for fresh content and views logging
+import type { Metadata } from "next";
 
 interface PageProps {
   params: Promise<{
     slug: string;
   }>;
+}
+
+export const revalidate = 0; // Force SSR for fresh content and views logging
+
+// Generate dynamic SEO metadata per blog post dynamically from database fields
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
+
+  if (!post) {
+    return {
+      title: "Post Not Found | BecharaScape",
+    };
+  }
+
+  // Ensure description is safe and fits optimal SEO search snippet constraints (120-160 characters)
+  const cleanDescription = post.metadata.description
+    .replace(/[#*`_\[\]]/g, '') // strip markdown markers
+    .substring(0, 155);
+
+  const ogImageUrl = post.metadata.image?.startsWith('http') 
+    ? post.metadata.image 
+    : `https://becharascape.com${post.metadata.image || '/jungle-aquarium.png'}`;
+
+  return {
+    title: post.metadata.title,
+    description: cleanDescription,
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
+    openGraph: {
+      title: post.metadata.title,
+      description: cleanDescription,
+      url: `https://becharascape.com/blog/${slug}`,
+      siteName: "BecharaScape",
+      images: [
+        {
+          url: ogImageUrl,
+          alt: post.metadata.title,
+        }
+      ],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.metadata.title,
+      description: cleanDescription,
+      images: [ogImageUrl],
+    }
+  };
 }
 
 export async function generateStaticParams() {
@@ -45,16 +94,8 @@ export default async function BlogPostPage({ params }: PageProps) {
               </div>
             </header>
 
-            <div className="ad-container">
-              Top Article Ad Placeholder
-            </div>
-
             <div className="prose">
               <MDXRemote source={post.content} />
-            </div>
-
-            <div className="ad-container">
-              Bottom Article Ad Placeholder
             </div>
           </div>
         </article>
