@@ -2,8 +2,20 @@ import { getAllPosts } from "@/lib/mdx";
 import Link from "next/link";
 import AquariumCalculator from "@/components/AquariumCalculator";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
+import type { Metadata } from "next";
 
 export const revalidate = 0; // Force SSR to fetch fresh posts on every request
+
+// Force canonical to '/' for all ?tag= variations to prevent duplicate content detection
+export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
+  const { tag } = await searchParams;
+  return {
+    alternates: {
+      canonical: '/',
+    },
+    ...(tag ? { robots: { index: true, follow: true } } : {}),
+  };
+}
 
 interface PageProps {
   searchParams: Promise<{ tag?: string }>;

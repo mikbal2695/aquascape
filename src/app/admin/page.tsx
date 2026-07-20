@@ -2,6 +2,15 @@ import { getAllPosts } from "@/lib/mdx";
 import Link from "next/link";
 import AdminPostForm from "@/components/AdminPostForm";
 import { supabase } from "@/lib/supabase";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Admin Dashboard",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export const revalidate = 0; // Disable cache for admin panel so metrics are always fresh
 

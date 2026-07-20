@@ -17,11 +17,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "BecharaScape - My Adventures In Aquascaping",
     description: "Explore professional aquascaping tutorials, planted tank setups, aquarium calculators, and journals.",
-    url: "https://becharascape.com", 
+    url: "https://www.becharascape.com", 
     siteName: "BecharaScape",
     images: [
       {
-        url: "https://becharascape.com/jungle-aquarium.png",
+        url: "https://www.becharascape.com/jungle-aquarium.png",
         width: 1200,
         height: 630,
         alt: "BecharaScape Aquascaping Layout"
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "BecharaScape - My Adventures In Aquascaping",
     description: "Explore professional aquascaping tutorials, planted tank setups, and journals.",
-    images: ["https://becharascape.com/jungle-aquarium.png"],
+    images: ["https://www.becharascape.com/jungle-aquarium.png"],
   }
 };
 
@@ -49,7 +49,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Blog",
     "name": "BecharaScape",
-    "url": "https://becharascape.com",
+    "url": "https://www.becharascape.com",
     "description": "My Adventures In Aquascaping",
   };
 
